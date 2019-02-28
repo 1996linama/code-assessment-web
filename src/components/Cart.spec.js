@@ -15,7 +15,7 @@ const setup = (total, products = []) => {
   return {
     component: component,
     actions: actions,
-    button: component.find('button'),
+    checkoutButton: component.find('#checkout'),
     products: component.find(Product),
     em: component.find('em'),
     p: component.find('p')
@@ -34,8 +34,8 @@ describe('Cart component', () => {
   })
 
   it('should disable button', () => {
-    const { button } = setup()
-    expect(button.prop('disabled')).toEqual('disabled')
+    const { checkoutButton } = setup()
+    expect(checkoutButton.prop('disabled')).toEqual('disabled')
   })
 
   describe('when given product', () => {
@@ -60,13 +60,13 @@ describe('Cart component', () => {
     })
 
     it('should not disable button', () => {
-      const { button } = setup('9.99', product)
-      expect(button.prop('disabled')).toEqual('')
+      const { checkoutButton } = setup('9.99', product)
+      expect(checkoutButton.prop('disabled')).toEqual('')
     })
 
-    it('should call action on button click', () => {
-      const { button, actions } = setup('9.99', product)
-      button.simulate('click')
+    it('should call action on checkout button click', () => {
+      const { checkoutButton, actions } = setup('9.99', product)
+      checkoutButton.simulate('click')
       expect(actions.onCheckoutClicked).toBeCalled()
     })
   })
