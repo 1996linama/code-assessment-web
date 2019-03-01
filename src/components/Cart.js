@@ -3,15 +3,15 @@ import PropTypes from 'prop-types'
 import Product from './Product'
 import CartItem from './CartItem'
 
-const Cart = ({ products, total, onCheckoutClicked, removeFromCart }) => {
+const Cart = ({ products, total, onCheckoutClicked, removeFromCart, updateCart }) => {
   const hasProducts = products.length > 0
   const nodes = hasProducts ? (
     products.map(product =>
       <CartItem
         product={product}
-        onRemoveFromCartClicked={() => removeFromCart(product.id, product.quantity)} />
+        onRemoveFromCartClicked={() => removeFromCart(product.id, product.quantity)}
+        onUpdateCart={(event) => (product.inventory + product.quantity >= event.target.value) ? updateCart(product.id, product.quantity, parseInt(event.target.value, 10)) : alert("Requested quantity is unavailable.") }/>
     )
-
   ) : (
       <em>Please add some products to cart.</em>
     )
@@ -28,7 +28,8 @@ const Cart = ({ products, total, onCheckoutClicked, removeFromCart }) => {
     </div>
   )
 }
-
+//checkInventory(product.id, product.quantity, product.inventory) ? updateCart(product.id, event.target.value) : alert('cannot'
+//(event) => updateCart(product.id, event.target.value)
 Cart.propTypes = {
   products: PropTypes.array,
   total: PropTypes.string,
