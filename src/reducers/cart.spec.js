@@ -32,8 +32,12 @@ describe('reducers', () => {
         quantityById: { 1: 1, 2: 1}
       }
 
-      it('should handle ADD_TO_CART action', () => {
+      const multipleQuantityState = {
+        addedIds: [1, 2],
+        quantityById: { 1: 2, 2: 3}
+      }
 
+      it('should handle ADD_TO_CART action', () => {
         expect(cart(initialState, { type: 'ADD_TO_CART', productId: 2 })).toEqual({
           addedIds: [1, 2],
           quantityById: { 1: 1, 2: 2 }
@@ -47,6 +51,28 @@ describe('reducers', () => {
           quantityById: { 1: 0 , 2: 1 }
         })
       })
+
+      it('should handle UPDATE_CART action (updating quantity less than the current product quantity)', () => {
+        expect(cart(multipleQuantityState, { type: 'UPDATE_CART', productId: 1, productQuantity: 2, changeQuantity: 1})).toEqual({
+          addedIds: [1, 2],
+          quantityById: {1: 1, 2: 3}
+        })
+      })
+
+      it('should handle UPDATE_CART action (updating quantity to be more than the current product quantity)', () => {
+        expect(cart(multipleQuantityState, { type: 'UPDATE_CART', productId: 2, productQuantity: 3, changeQuantity: 4})).toEqual({
+          addedIds: [1, 2],
+          quantityById: {1: 2, 2: 4}
+        })
+      })
+
+      it('should handle UPDATE_CART action when desired quantity is 0 and should also REMOVE item from cart', () => {
+        expect(cart(multipleQuantityState, { type: 'UPDATE_CART', productId: 1, productQuantity: 2, changeQuantity: 0})).toEqual({
+          addedIds: [2],
+          quantityById: {1: 0, 2: 3}
+        })
+      })
+
     })
   })
 })

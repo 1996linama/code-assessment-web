@@ -23,6 +23,11 @@ const addedIds = (state = initialState.addedIds, action) => {
         return value !== action.productId
       })
     case UPDATE_CART:
+      if(action.changeQuantity === 0){
+        return state.filter((value) => {
+          return value !== action.productId
+        })
+      }
       return state
     default:
       return state
