@@ -19,10 +19,10 @@ const ProductItem = ({ product, onAddToCartClicked }) => (
 ProductItem.propTypes = {
   product: PropTypes.shape({
     productTitle: PropTypes.string.isRequired,
-    price: PropTypes.arrayOf(PropTypes.shape({
+    price: PropTypes.shape({
       value: PropTypes.number.isRequired,
       currency: PropTypes.string.isRequired,
-    })).isRequired,
+    }).isRequired,
     inventory: PropTypes.number.isRequired
   }).isRequired,
   onAddToCartClicked: PropTypes.func.isRequired

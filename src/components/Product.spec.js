@@ -14,13 +14,13 @@ const setup = props => {
 
 describe('Product component', () => {
   it('should render title and price', () => {
-    const { component } = setup({ title: 'Test Product', price: 9.99 })
+    const { component } = setup({ productTitle: 'Test Product', price: {value: 9.99, currency: 'USD'} })
     expect(component.text()).toBe('Test Product - $9.99')
   })
 
   describe('when given inventory', () => {
     it('should render title, price, and inventory', () => {
-      const { component } = setup({ title: 'Test Product', price: 9.99, inventory: 6 })
+      const { component } = setup({ productTitle: 'Test Product', price: {value: 9.99, currency: 'USD'}, inventory: 6 })
       expect(component.text()).toBe('Test Product - $9.99 x 6')
     })
   })

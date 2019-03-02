@@ -44,7 +44,10 @@ describe('Cart component', () => {
       {
         id: 1,
         title: 'Product 1',
-        price: 9.99,
+        price: {
+          value: 9.99,
+          currency: 'USD'
+        },
         quantity: 1
       }
     ]

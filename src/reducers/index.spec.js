@@ -16,15 +16,24 @@ describe('selectors', () => {
           byId: {
             1: {
               id: 1,
-              price: 1.99
+              price: {
+                value: 1.99,
+                currency: 'USD'
+              }
             },
             2: {
               id: 1,
-              price: 4.99
+              price: {
+                value: 4.99,
+                currency: 'USD'
+              }
             },
             3: {
               id: 1,
-              price: 9.99
+              price: {
+                value: 9.99,
+                currency: 'USD'
+              }
             }
           }
         }

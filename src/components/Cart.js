@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Product from "./Product";
 import CartItem from "./CartItem";
 
 const Cart = ({
@@ -14,14 +13,14 @@ const Cart = ({
   const nodes = hasProducts ? (
     products.map(product => (
       <CartItem
+        key={product.id}
         product={product}
+        maxInventory={product.inventory + product.quantity}
         onRemoveFromCartClicked={() =>
           removeFromCart(product.id, product.quantity)
         }
-        onUpdateCart={(event) => {
-          !Number.isInteger(event.target.value) &&
-            alert("Please enter a valid quantity.");
-          product.inventory + product.quantity >= event.target.value
+        onUpdateCartClicked={(event) => {
+          (product.inventory + product.quantity >= event.target.value)
             ? updateCart(
                 product.id,
                 product.quantity,

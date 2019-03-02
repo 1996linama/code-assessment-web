@@ -25,15 +25,17 @@ let productProps
 describe('ProductItem component', () => {
   beforeEach(() => {
     productProps = {
-      title: 'Product 1',
-      price: 9.99,
+      productTitle: 'Product 1',
+      price: {
+        value: 9.99,
+        currency: 'USD'},
       inventory: 6
     }
   })
 
   it('should render product', () => {
     const { product } = setup(productProps)
-    expect(product.props()).toEqual({ title: 'Product 1', price: 9.99, inventory: 6 })
+    expect(product.props()).toEqual({ productTitle: 'Product 1', price: {value: 9.99, currency: 'USD'}, inventory: 6 })
   })
 
   it('should render Add To Cart message', () => {

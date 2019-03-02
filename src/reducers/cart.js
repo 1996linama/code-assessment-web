@@ -36,7 +36,6 @@ const addedIds = (state = initialState.addedIds, action) => {
 
 const quantityById = (state = initialState.quantityById, action) => {
   const { productId } = action
-  const { changeQuantity } = action
   switch (action.type) {
     case ADD_TO_CART:
       return {
