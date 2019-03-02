@@ -5,7 +5,7 @@ import Product from './Product'
 const CartItem = ({ product, onRemoveFromCartClicked, onUpdateCart }) => (
   <div style={{ marginBottom: 20 }}>
     <Product
-      title={product.title} 
+      productTitle={product.productTitle} 
       price={product.price}
       quantity={product.quantity}
       key={product.id} />
@@ -21,8 +21,11 @@ const CartItem = ({ product, onRemoveFromCartClicked, onUpdateCart }) => (
 
 CartItem.propTypes = {
   product: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
+    productTitle: PropTypes.string.isRequired,
+    price: PropTypes.arrayOf(PropTypes.shape({
+      value: PropTypes.number.isRequired,
+      currency: PropTypes.string.isRequired,
+    })).isRequired,
     quantity: PropTypes.number.isRequired
   }).isRequired,
   onRemoveFromCartClicked: PropTypes.func.isRequired,

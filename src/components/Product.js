@@ -1,16 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Product = ({ price, inventory, title }) => (
+const Product = ({ price, inventory, productTitle }) => (
   <div>
-    {title} - &#36;{price}{inventory ? ` x ${inventory}` : null}
+    {productTitle} - &#36;{price.value}{inventory ? ` x ${inventory}` : null}
   </div>
 )
 
 Product.propTypes = {
-  price: PropTypes.number,
+  price: PropTypes.arrayOf(PropTypes.shape({
+    value: PropTypes.number.isRequired,
+    currency: PropTypes.string.isRequired,
+  })).isRequired,
   inventory: PropTypes.number,
-  title: PropTypes.string
+  productTitle: PropTypes.string
 }
 
 export default Product
