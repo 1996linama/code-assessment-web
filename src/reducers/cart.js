@@ -40,17 +40,17 @@ const quantityById = (state = initialState.quantityById, action) => {
     case ADD_TO_CART:
       return {
         ...state,
-        [productId]: (state[productId] || 0) + 1 //adding one into the cart
+        [productId]: (state[productId] || 0) + 1
       }
     case REMOVE_FROM_CART:
       return {
         ...state,
-        [productId]: 0 // setting quantity to 0
+        [productId]: 0 // sets quantity to 0
       }
     case UPDATE_CART:
       return {
         ...state,
-        [productId]: action.changeQuantity //currently remains the same. BUT we want to increase or decrease based on desired quantity
+        [productId]: action.changeQuantity
       }
     default:
       return state

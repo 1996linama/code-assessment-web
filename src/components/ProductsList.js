@@ -1,16 +1,11 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from "react";
+import PropTypes from "prop-types";
+import { Container } from "react-bootstrap";
 
-const ProductsList = ({ title, children }) => (
-  <div>
-    <h3>{title}</h3>
-    <div>{children}</div>
-  </div>
-)
+const ProductsList = ({ children }) => <Container fluid>{children}</Container>;
 
 ProductsList.propTypes = {
-  children: PropTypes.node,
-  title: PropTypes.string.isRequired
-}
+  children: PropTypes.node
+};
 
-export default ProductsList
+export default ProductsList;

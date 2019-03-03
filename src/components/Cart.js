@@ -19,15 +19,9 @@ const Cart = ({
         onRemoveFromCartClicked={() =>
           removeFromCart(product.id, product.quantity)
         }
-        onUpdateCartClicked={(event) => {
-          (product.inventory + product.quantity >= event.target.value)
-            ? updateCart(
-                product.id,
-                product.quantity,
-                parseInt(event.target.value, 10)
-              )
-            : alert("Requested quantity is unavailable.");
-        }}
+        onUpdateCartClicked={(event) => 
+          updateCart(product.id,product.quantity,parseInt(event.target.value, 10))
+        }
       />
     ))
   ) : (
