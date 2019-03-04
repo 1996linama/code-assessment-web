@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Product from "./Product";
+import { Modal } from "react-bootstrap"
 
 const CartItem = ({
   product,
@@ -15,8 +16,7 @@ const CartItem = ({
   }
 
   return (
-    <div style={{ marginBottom: 20 }}>
-      <Product
+    <div><Product
         productTitle={product.productTitle}
         price={product.price}
         quantity={product.quantity}
@@ -26,8 +26,8 @@ const CartItem = ({
         {quantityAvailable.map((num) =>
         <option value={num}>{num}</option>)}
       </select>{" "}
-      <button onClick={onRemoveFromCartClicked}>X</button>
-    </div>
+      <button onClick={onRemoveFromCartClicked}>Remove</button>
+      </div>
   );
 };
 

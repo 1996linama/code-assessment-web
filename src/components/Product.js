@@ -3,23 +3,17 @@ import PropTypes from "prop-types";
 import { Card, Row, Col } from "react-bootstrap";
 
 const Product = ({ price, inventory, productTitle }) => (
-  <div>
-    <Row md="auto">
-      <Col>
-        <Card.Title>{productTitle}</Card.Title>
-      </Col>
-      <Col>
-        <Card.Text>&#36;{price.value}</Card.Text>
-      </Col>
+  <Col>
+    <Row>
+      <Card.Title>{productTitle}</Card.Title>
+      <Card.Text className="price">&#36;{price.value}</Card.Text>
     </Row>
     <Row>
-      <Col>
-        <Card.Subtitle>
-          {inventory ? `${inventory} remaining` : null}
-        </Card.Subtitle>
-      </Col>
+      <Card.Subtitle>
+        {inventory ? `${inventory} remaining` : null}
+      </Card.Subtitle>
     </Row>
-  </div>
+  </Col>
 );
 
 Product.propTypes = {

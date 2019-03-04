@@ -21,7 +21,8 @@ const ProductItem = ({ product, onAddToCartClicked }) => (
             variant="primary"
             size="sm"
             onClick={onAddToCartClicked}
-            disabled={product.inventory > 0 ? "" : "disabled"} >
+            disabled={product.inventory > 0 ? "" : "disabled"}
+          >
             {product.inventory > 0 ? "Add to cart" : "Sold Out"}
           </Button>
         </Card.Body>
