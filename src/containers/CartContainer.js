@@ -27,7 +27,7 @@ const CartContainer = ({
   let body = null;
   if (didCheckoutFail) {
     body = <ErrorCart />;
-  } else if (products.length == 0) {
+  } else if (products.length === 0) {
     body = <EmptyCart />;
   } else {
     body = (

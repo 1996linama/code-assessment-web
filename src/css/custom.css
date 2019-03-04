@@ -34,6 +34,7 @@ body {
 }
 
 .btn-primary {
+  margin-top: 10%;
   background-color: #5e97d1;
 }
 
@@ -45,10 +46,14 @@ body {
 
 .btn-secondary,
 .btn-secondary:disabled,
-.btn-secondary:disabled:hover {
+.btn-secondary:disabled:hover,
+.btn-secondary:active,
+.btn-secondary:focus {
   background-color: #f5f5f5;
   color: #8e939c;
   font-weight: bold;
+  border-style: none;
+  border-color: #fff;
 }
 
 .btn-secondary:hover {
@@ -68,8 +73,13 @@ img {
   width: 100%;
 }
 
+.btn#checkout {
+  border-radius: 0px;
+  height: 100%;
+}
+
 .card .card-title {
-  font-size: 21px;
+  font-size: 20px;
   font-family: "Nunito", sans-serif;
 }
 .card .card-subtitle {
@@ -90,11 +100,25 @@ img {
   margin: auto;
 }
 
-.modal {
+.modal.body {
   border-style: none;
+  color: #9b9b9b;
 }
 
 .centered-modal-contents {
   text-align: center;
   padding: 50px;
+}
+
+.remove, 
+.remove:hover,
+.remove:active {
+  color: darkred;
+  text-decoration: none;
+  padding: 0;
+  font-size: 14px;
+}
+
+.creditCard {
+  margin-bottom: 20px;
 }

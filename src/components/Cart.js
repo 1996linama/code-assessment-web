@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import CartItem from "./CartItem";
-import { Modal, Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 const Cart = ({ products, total, removeFromCart, updateCart, checkout }) => {
   const nodes = products.map(product => (
@@ -18,12 +18,19 @@ const Cart = ({ products, total, removeFromCart, updateCart, checkout }) => {
     />
   ));
 
+  let taxes = total* 0.08
+  let finalTotal = total + taxes;
+
   return (
     <div>
       {nodes}
       <hr />
       <div>
-        <p>Total: &#36;{total}</p>
+        <p>Subtotal: &#36;{total.toFixed(2)}</p>
+        <p>Taxes: &#36;{taxes.toFixed(2)}</p>
+        <hr />
+        <p>Total: &#36;{finalTotal.toFixed(2)}</p>
+
         <Button block id="checkout" onClick={() => checkout(products)}>
           Checkout
         </Button>

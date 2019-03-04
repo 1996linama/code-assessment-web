@@ -19,8 +19,7 @@ export const getTotal = state =>
       (total, id) =>
         total + getProduct(state, id).price.value * getQuantity(state, id),
       0
-    )
-    .toFixed(2);
+    );
 
 export const getCartProducts = state =>
   getAddedIds(state).map(id => ({

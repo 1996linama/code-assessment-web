@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Product from "./Product";
 import { Card, Row, Col, ButtonGroup, Button } from "react-bootstrap";
 import img from "../images/index.jpeg";
 
@@ -20,9 +19,9 @@ const CartItem = ({
           <Card.Title>{product.productTitle}</Card.Title>
           <Card.Subtitle>&#36;{product.price.value}</Card.Subtitle>
 
-          <a style={{ color: "red" }} onClick={onRemoveFromCartClicked}>
+          <Button variant="link" className="remove" onClick={onRemoveFromCartClicked}>
             Remove
-          </a>
+          </Button>
         </Col>
         <Col md={4} sm={12} xs={12}>
           <ButtonGroup>
