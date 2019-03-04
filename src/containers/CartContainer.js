@@ -2,39 +2,53 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { checkout } from "../actions";
-import { getTotal, getCartProducts, getCartShowing } from "../reducers";
+import {
+  getTotal,
+  getCartProducts,
+  getCartShowing,
+  getCheckoutFailed
+} from "../reducers";
 import { removeFromCart, updateCart, toggleCartModal } from "../actions";
 import Cart from "../components/Cart";
-import { Modal, Button } from "react-bootstrap";
+import EmptyCart from "../components/EmptyCart";
+import ErrorCart from "../components/ErrorCart";
+import { Modal } from "react-bootstrap";
 
 const CartContainer = ({
   products,
   total,
   isCartShowing,
+  didCheckoutFail,
   checkout,
   removeFromCart,
   updateCart,
   toggleCartModal
-}) => (
-  <Modal size="lg" show={isCartShowing} onHide={toggleCartModal}>
-    <Modal.Body>
+}) => {
+  let body = null;
+  if (didCheckoutFail) {
+    body = <ErrorCart />;
+  } else if (products.length == 0) {
+    body = <EmptyCart />;
+  } else {
+    body = (
       <Cart
         products={products}
         total={total}
         removeFromCart={removeFromCart}
         updateCart={updateCart}
+        checkout={checkout}
       />
-      {products.length > 0 ? (
-        <div>
-          <p>Total: &#36;{total}</p>
-          <Button id="checkout" onClick={() => checkout(products)}>
-            Checkout
-          </Button>
-        </div>
-      ) : null}
-    </Modal.Body>
-  </Modal>
-);
+    );
+  }
+  return (
+    <Modal size="lg" show={isCartShowing} onHide={toggleCartModal}>
+      <Modal.Header closeButton>
+        <Modal.Title> Your Cart </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>{body}</Modal.Body>
+    </Modal>
+  );
+};
 
 CartContainer.propTypes = {
   products: PropTypes.arrayOf(
@@ -55,7 +69,8 @@ CartContainer.propTypes = {
 const mapStateToProps = state => ({
   products: getCartProducts(state),
   total: getTotal(state),
-  isCartShowing: getCartShowing(state)
+  isCartShowing: getCartShowing(state),
+  didCheckoutFail: getCheckoutFailed(state)
 });
 
 export default connect(

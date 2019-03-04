@@ -5,12 +5,19 @@ import { connect } from "react-redux";
 import { getCartProducts } from "../reducers";
 import { toggleCartModal } from "../actions";
 
-const CartLink = ({ products, toggleCartModal }) => (
-  <Button variant="link" onClick={toggleCartModal}>
-    <span className="fa fa-shopping-cart" />{" "}
-    {products.length === 0 ? `Your cart is empty` : products.length}
-  </Button>
-);
+const CartLink = ({ products, toggleCartModal }) => {
+  let cartQuantity = 0;
+  products.forEach(product => {
+    cartQuantity += product.quantity;
+  });
+
+  return (
+    <Button variant="link" onClick={toggleCartModal}>
+      <span className="fa fa-shopping-cart" />{" "}
+      {cartQuantity === 0 ? `Your cart is empty` : cartQuantity}
+    </Button>
+  );
+};
 
 CartLink.propTypes = {
   products: PropTypes.array
@@ -20,4 +27,7 @@ const mapStateToProps = state => ({
   products: getCartProducts(state)
 });
 
-export default connect(mapStateToProps, {toggleCartModal})(CartLink);
+export default connect(
+  mapStateToProps,
+  { toggleCartModal }
+)(CartLink);

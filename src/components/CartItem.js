@@ -1,35 +1,51 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Product from "./Product";
-import { Modal } from "react-bootstrap"
+import { Card, Row, Col, ButtonGroup, Button } from "react-bootstrap";
+import img from "../images/index.jpeg";
 
 const CartItem = ({
   product,
   maxInventory,
   onRemoveFromCartClicked,
   onUpdateCartClicked
-}) => {
-  let quantityAvailable = [];
+}) => (
+  <Card>
+    <Card.Body>
+      <Row>
+        <Col md={4} sm={5} xs={5}>
+          <Card.Img src={img} />
+        </Col>
+        <Col md={4} sm={7} xs={7}>
+          <Card.Title>{product.productTitle}</Card.Title>
+          <Card.Subtitle>&#36;{product.price.value}</Card.Subtitle>
 
-  for (let i = 1; i <= maxInventory; i++) {
-    quantityAvailable.push(i);
-  }
-
-  return (
-    <div><Product
-        productTitle={product.productTitle}
-        price={product.price}
-        quantity={product.quantity}
-        key={product.id}
-      />
-      <select onChange={onUpdateCartClicked} value={product.quantity}>
-        {quantityAvailable.map((num) =>
-        <option value={num}>{num}</option>)}
-      </select>{" "}
-      <button onClick={onRemoveFromCartClicked}>Remove</button>
-      </div>
-  );
-};
+          <a style={{ color: "red" }} onClick={onRemoveFromCartClicked}>
+            Remove
+          </a>
+        </Col>
+        <Col md={4} sm={12} xs={12}>
+          <ButtonGroup>
+            <Button
+              variant="secondary"
+              onClick={() => onUpdateCartClicked(product.quantity - 1)}
+            >
+              -
+            </Button>
+            <Button variant="text">{product.quantity}</Button>
+            <Button
+              variant="secondary"
+              onClick={() => onUpdateCartClicked(product.quantity + 1)}
+              disabled={product.quantity === maxInventory}
+            >
+              +
+            </Button>
+          </ButtonGroup>
+        </Col>
+      </Row>
+    </Card.Body>
+  </Card>
+);
 
 CartItem.propTypes = {
   product: PropTypes.shape({

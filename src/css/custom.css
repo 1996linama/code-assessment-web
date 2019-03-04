@@ -14,14 +14,16 @@ body {
 .btn {
   border: none;
   border-radius: 14px;
-  padding: 7px 20px 7px 20px;
+  padding: 7px 20px;
 }
 
 .btn:disabled {
   opacity: 0.3;
+  cursor: not-allowed;
 }
 
-.btn-link, .btn-link:active{
+.btn-link,
+.btn-link:active {
   color: black;
   text-decoration: none;
 }
@@ -41,14 +43,21 @@ body {
   box-shadow: 3px 2px 5px;
 }
 
-.btn-secondary {
+.btn-secondary,
+.btn-secondary:disabled,
+.btn-secondary:disabled:hover {
   background-color: #f5f5f5;
-  color: #d8d8d8;
+  color: #8e939c;
+  font-weight: bold;
 }
 
 .btn-secondary:hover {
   background-color: #5e97d1;
   color: white;
+}
+
+.btn-group {
+  width: 100%;
 }
 
 img {
@@ -83,4 +92,9 @@ img {
 
 .modal {
   border-style: none;
+}
+
+.centered-modal-contents {
+  text-align: center;
+  padding: 50px;
 }

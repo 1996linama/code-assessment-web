@@ -16,4 +16,4 @@ Completed by Lina Ma (@1996linama) for Work & Co Web Code Assessment.
 ## Tools & Platform
 <p> <b> Platforms: </b> Visual Studio Code, Sketch</p>
 <p> <b> Languages: </b> Javascript</p>
-<p> <b> Frameworks/Libraries: </b> React, jQuery</p>
+<p> <b> Frameworks/Libraries: </b> React, jQuery, Bootstrap, Font Awesome</p>

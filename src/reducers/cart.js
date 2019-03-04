@@ -10,14 +10,14 @@ import {
 const initialState = {
   addedIds: [],
   quantityById: {},
-  isCartShowing: false
+  isCartShowing: false,
+  failed: false
 };
 
 const cartShowing = (state = initialState.isCartShowing, action) => {
   switch (action.type) {
     case TOGGLE_CART:
-      state = !state;
-      return state;
+      return !state;
     default:
       return state;
   }
@@ -76,11 +76,14 @@ export const getAddedIds = state => state.addedIds;
 
 export const getCartShowing = state => state.isCartShowing;
 
+export const getCheckoutFailed = state => state.failed;
+
 const cart = (state = initialState, action) => {
   switch (action.type) {
     case CHECKOUT_REQUEST:
       return initialState;
     case CHECKOUT_FAILURE:
+      action.cart.failed = true;
       return action.cart;
     default:
       return {
