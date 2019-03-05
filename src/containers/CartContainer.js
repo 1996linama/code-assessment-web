@@ -1,14 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { checkout } from "../actions";
 import {
-  getTotal,
+  getSubtotal,
   getCartProducts,
   getCartShowing,
-  getCheckoutFailed
+  getCheckoutFailed,
+  getTaxes,
+  getTotal
 } from "../reducers";
-import { removeFromCart, updateCart, toggleCartModal } from "../actions";
+import { removeFromCart, updateCart, toggleCartModal, checkout } from "../actions";
 import Cart from "../components/Cart";
 import EmptyCart from "../components/EmptyCart";
 import ErrorCart from "../components/ErrorCart";
@@ -16,6 +17,8 @@ import { Modal } from "react-bootstrap";
 
 const CartContainer = ({
   products,
+  subtotal,
+  taxes,
   total,
   isCartShowing,
   didCheckoutFail,
@@ -25,6 +28,8 @@ const CartContainer = ({
   toggleCartModal
 }) => {
   let body = null;
+
+  //changes the content of the cart modal based on the user's shopping process
   if (didCheckoutFail) {
     body = <ErrorCart />;
   } else if (products.length === 0) {
@@ -34,6 +39,8 @@ const CartContainer = ({
       <Cart
         products={products}
         total={total}
+        taxes={taxes}
+        subtotal={subtotal}
         removeFromCart={removeFromCart}
         updateCart={updateCart}
         checkout={checkout}
@@ -62,12 +69,16 @@ CartContainer.propTypes = {
       quantity: PropTypes.number.isRequired
     })
   ).isRequired,
+  subtotal: PropTypes.number,
   total: PropTypes.string,
+  taxes: PropTypes.number,
   checkout: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
   products: getCartProducts(state),
+  subtotal: getSubtotal(state),
+  taxes: getTaxes(state),
   total: getTotal(state),
   isCartShowing: getCartShowing(state),
   didCheckoutFail: getCheckoutFailed(state)

@@ -1,4 +1,5 @@
 import reducer, * as products from './products'
+import { shallow } from 'enzyme';
 
 describe('reducers', () => {
   describe('products', () => {

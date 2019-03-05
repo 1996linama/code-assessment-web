@@ -27,18 +27,14 @@ const CartItem = ({
           <ButtonGroup>
             <Button
               variant="secondary"
-              onClick={() => onUpdateCartClicked(product.quantity - 1)}
-            >
-              -
-            </Button>
+              onClick={() => onUpdateCartClicked(product.quantity - 1)}>
+              - </Button>
             <Button variant="text">{product.quantity}</Button>
             <Button
               variant="secondary"
               onClick={() => onUpdateCartClicked(product.quantity + 1)}
-              disabled={product.quantity === maxInventory}
-            >
-              +
-            </Button>
+              disabled={product.quantity === maxInventory}>
+              + </Button>
           </ButtonGroup>
         </Col>
       </Row>

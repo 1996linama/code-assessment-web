@@ -1,7 +1,10 @@
-import React from 'react'
+
 import { shallow } from 'enzyme'
+import React from 'react'
 import Product from './Product'
 import ProductItem from './ProductItem'
+import setupTests from '../setupTests'
+import { Button } from 'react-bootstrap'
 
 const setup = product => {
   const actions = {
@@ -15,7 +18,7 @@ const setup = product => {
   return {
     component: component,
     actions: actions,
-    button: component.find('button'),
+    button: component.find(Button), //Button bootstrap component
     product: component.find(Product)
   }
 }

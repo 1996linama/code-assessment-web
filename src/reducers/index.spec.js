@@ -1,6 +1,7 @@
 import { getTotal, getCartProducts } from './index'
 
 describe('selectors', () => {
+
   describe('getTotal', () => {
     it('should return price total', () => {
       const state = {
@@ -38,7 +39,7 @@ describe('selectors', () => {
           }
         }
       }
-      expect(getTotal(state)).toBe('27.93')
+      expect(getTotal(state)).toBe("30.16")
     })
   })
 

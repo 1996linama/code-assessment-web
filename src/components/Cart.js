@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import CartItem from "./CartItem";
 import { Button } from "react-bootstrap";
 
-const Cart = ({ products, total, removeFromCart, updateCart, checkout }) => {
+const Cart = ({ products, total, taxes, subtotal, removeFromCart, updateCart, checkout }) => {
   const nodes = products.map(product => (
     <CartItem
       key={product.id}
@@ -17,19 +17,15 @@ const Cart = ({ products, total, removeFromCart, updateCart, checkout }) => {
       }
     />
   ));
-
-  let taxes = total* 0.08
-  let finalTotal = total + taxes;
-
   return (
     <div>
       {nodes}
       <hr />
       <div>
-        <p>Subtotal: &#36;{total.toFixed(2)}</p>
-        <p>Taxes: &#36;{taxes.toFixed(2)}</p>
+        <p id="subtotal">Subtotal: &#36;{Number(subtotal).toFixed(2)}</p>
+        <p id="taxes">Taxes: &#36;{Number(taxes).toFixed(2)}</p>
         <hr />
-        <p>Total: &#36;{finalTotal.toFixed(2)}</p>
+        <p id="total">Total: &#36;{total}</p>
 
         <Button block id="checkout" onClick={() => checkout(products)}>
           Checkout
@@ -38,9 +34,13 @@ const Cart = ({ products, total, removeFromCart, updateCart, checkout }) => {
     </div>
   );
 };
+
 Cart.propTypes = {
   products: PropTypes.array,
-  total: PropTypes.string
+  subtotal: PropTypes.number,
+  taxes: PropTypes.number,
+  total: PropTypes.string,
+  checkout: PropTypes.func
 };
 
 export default Cart;

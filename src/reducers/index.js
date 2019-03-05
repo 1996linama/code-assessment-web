@@ -13,13 +13,21 @@ const getProduct = (state, id) => fromProducts.getProduct(state.products, id);
 export const getCheckoutFailed = state => fromCart.getCheckoutFailed(state.cart);
 export const getCartShowing = state => fromCart.getCartShowing(state.cart);
 
-export const getTotal = state =>
+export const getSubtotal = state =>
   getAddedIds(state)
     .reduce(
-      (total, id) =>
-        total + getProduct(state, id).price.value * getQuantity(state, id),
-      0
-    );
+      (subtotal, id) =>
+        subtotal + getProduct(state, id).price.value * getQuantity(state, id),
+      0);
+
+export const getTaxes = (state) =>
+getAddedIds(state)
+.reduce(
+  (subtotal, id) =>
+    subtotal + getProduct(state, id).price.value * getQuantity(state, id),
+  0) * 0.08
+
+export const getTotal = (state) => (getSubtotal(state) + getTaxes(state)).toFixed(2)
 
 export const getCartProducts = state =>
   getAddedIds(state).map(id => ({
